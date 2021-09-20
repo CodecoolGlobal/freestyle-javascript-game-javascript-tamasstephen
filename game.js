@@ -1,27 +1,54 @@
-initGame();
-
-function initGame() {
-    const board = createBoard();
-    //document.querySelector(".wrapper").appendChild(board);
-    const game = new Game(dummyData, 30);
-    // Your game can start here, but define separate functions, don't write everything in here :)
-
-}
-
-new class Game {
+class Game {
     constructor(gameData, timer=20){
         this.gameData = gameData;
         this.timeLimit = this.timeLimit;
         this.rightAnswer = this.rightAnswer;
+        this.score = 0;
+        this.h2 = null;
+        this.answerContainers = null;
+    }
+
+    handleClick = (e) => {
+        const answerContainers = document.querySelectorAll("answer-container");
+        answerContainers.forEach(el => el.removeEventListener("click", this.handleClick));
+        const answer = e.currentTarget.querySelector(".answer").textContent
+        this.handleScore(answer);
+    }
+
+    handleScore(answer){
+        answer === this.rightAnswer ? this.score += 100 : this.score -= 50;
+    }
+
+    provideNewQuestions(){
+        const currentData = this.gameData.shift();
+        this.h2.textContent = currentData.question;
+        this.fillAnswers(currentData.answers);
+    }
+
+    fillAnswers(answers){
+        let i = 0; 
+        for (const container of this.answersP) {
+            container.querySelector(".answer").textContent = answers[i].answer;
+            i++;
+       }
     }
 
     init(){
-
+        this.h2 = document.querySelector("#playfield > h2");
+        this.answersP = document.querySelectorAll(".answer-container");
+        this.provideNewQuestions()
     }
 
-    handleAnswerClick = () => {
+}
 
-    }
+
+function initGame() {
+    const board = createBoard();
+    const game = new Game(dummyData, 30) 
+    game.init(); 
+    //document.querySelector(".wrapper").appendChild(board);
+    // Your game can start here, but define separate functions, don't write everything in here :)
+
 }
 
 // creates the playfield with an h2 and 4 answer-containers that include an answer-inner and an answer-outer div
@@ -51,3 +78,6 @@ const dummyData = [
         ]
     }
 ]
+
+
+initGame();
