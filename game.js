@@ -37,8 +37,16 @@ class Game {
         let i = 0; 
         for (const container of this.answerContainers) {
             container.querySelector(".answer").textContent = answers[i].answer;
+            this.saveRightAnswer(answers[i]);
             i++;
        }
+    }
+
+    saveRightAnswer(answer){
+        if (answer.right){
+            this.rightAnswer = answer.answer;
+            console.log(this.rightAnswer);
+        }
     }
 
     init(){
