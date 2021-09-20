@@ -1,7 +1,9 @@
 initGame();
 
 function initGame() {
-
+    const board = createBoard();
+    //document.querySelector(".wrapper").appendChild(board);
+    const game = new Game(dummyData, 30);
     // Your game can start here, but define separate functions, don't write everything in here :)
 
 }
@@ -11,6 +13,14 @@ new class Game {
         this.gameData = gameData;
         this.timeLimit = this.timeLimit;
         this.rightAnswer = this.rightAnswer;
+    }
+
+    init(){
+
+    }
+
+    handleAnswerClick = () => {
+
     }
 }
 
