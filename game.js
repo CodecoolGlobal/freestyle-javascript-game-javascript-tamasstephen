@@ -25,6 +25,7 @@ class Game {
         let i = 0; 
         for (const container of this.answerContainers) {
             container.querySelector(".answer").textContent = answers[i].answer;
+            container.querySelector(".question-number").textContent = i + 1;
             this.saveRightAnswer(answers[i]);
             i++;
        }
@@ -48,6 +49,8 @@ class Game {
 
 function initGame() {
     const board = createBoard();
+    console.log(board);
+    document.querySelector(".wrapper").appendChild(board);
     const game = new Game(dummyData, 30) 
     game.init(); 
     //document.querySelector(".wrapper").appendChild(board);
@@ -58,8 +61,39 @@ function initGame() {
 // creates the playfield with an h2 and 4 answer-containers that include an answer-inner and an answer-outer div
 // the anser-inner div contains two <p>'s the first contains the number of the question the second has the class
 // answer and is empty, the function returns the board
-function createBoard(){
 
+function createBoard() {
+    const newDiv = document.createElement('div');
+    newDiv.id = 'playfield';
+    const newH2 = document.createElement('h2');
+    // let htmlDiv = document.querySelector(".wrapper").appendChild(newDiv);
+    newDiv.appendChild(newH2);
+    for (let numberOfQuestions = 4; numberOfQuestions >= 1; numberOfQuestions--) {
+        let answerDiv = document.createElement('div');
+        answerDiv.classList.add('answer-container');
+        newDiv.appendChild(answerDiv);
+        console.log(answerDiv);
+        for (let index = 1; index >= 1; index--) {
+            let answerBackDiv = document.createElement('div');
+            let answerFrontDiv = document.createElement('div');
+            answerFrontDiv.classList.add('answer-front');
+            answerBackDiv.classList.add('answer-back');
+            answerDiv.appendChild(answerFrontDiv);
+            answerDiv.appendChild(answerBackDiv);
+            for (let index = 1; index >= 1; index--) {
+                let questionNumberParagraphsElement = document.createElement('p');
+                let answerParagraphsElement = document.createElement('p');
+                questionNumberParagraphsElement.classList.add('question-number');
+                answerParagraphsElement.classList.add('answer');
+                answerFrontDiv.appendChild(questionNumberParagraphsElement);
+                answerFrontDiv.appendChild((answerParagraphsElement));
+            }
+        }
+    }
+    // console.log(newDiv);
+    // console.log(newH2);
+    // console.log(htmlDiv);
+    return newDiv;
 }
 
 const util = {
