@@ -6,19 +6,7 @@ class Game {
         this.score = 0;
         this.h2 = null;
         this.answerContainers = null;
-        this.handleClick = this.clickHandlerWrapper(this);
-    }
-
-    clickHandlerWrapper(obj){
-        function handleClick (e) {
-            console.log(e);
-            obj.answerContainers.forEach(el => el.removeEventListener("click", obj.handleClick));
-            const answer = e.currentTarget.querySelector(".answer").textContent
-            obj.handleScore(answer);
-            console.log(obj.score);
-            obj.provideNewQuestions();
-        }
-        return handleClick
+        this.handleClick = util.clickHandlerWrapper(this);
     }
 
 
@@ -74,6 +62,22 @@ function createBoard(){
 
 }
 
+const util = {
+
+    clickHandlerWrapper(obj){
+        function handleClick (e) {
+            console.log(e);
+            obj.answerContainers.forEach(el => el.removeEventListener("click", obj.handleClick));
+            const answer = e.currentTarget.querySelector(".answer").textContent
+            obj.handleScore(answer);
+            console.log(obj.score);
+            obj.provideNewQuestions();
+        }
+        return handleClick
+    },
+
+}
+
 const dummyData = [
     {
         question: "What is the name of David Hasselhoff's hit from 2015?",
@@ -87,9 +91,9 @@ const dummyData = [
     {
         question: "What is the name of the infamous Uwe Boll movie from 2005?",
         answers: [
-            {answer: "Survivor", right: true},
+            {answer: "Survivor", right: false},
             {answer: "The King's men", right: false},
-            {answer: "Alone in the dark", right: false},
+            {answer: "Alone in the dark", right: true},
             {answer: "Dark temptation"}
         ]
     }
