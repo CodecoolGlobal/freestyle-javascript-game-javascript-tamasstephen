@@ -6,14 +6,21 @@ class Game {
         this.score = 0;
         this.h2 = null;
         this.answerContainers = null;
+        this.handleClick = this.clickHandlerWrapper(this);
     }
 
-    handleClick = (e) => {
-        const answerContainers = document.querySelectorAll("answer-container");
-        answerContainers.forEach(el => el.removeEventListener("click", this.handleClick));
-        const answer = e.currentTarget.querySelector(".answer").textContent
-        this.handleScore(answer);
+    clickHandlerWrapper(obj){
+        function handleClick (e) {
+            console.log(e);
+            obj.answerContainers.forEach(el => el.removeEventListener("click", obj.handleClick));
+            const answer = e.currentTarget.querySelector(".answer").textContent
+            obj.handleScore(answer);
+            console.log(obj.score);
+            obj.provideNewQuestions();
+        }
+        return handleClick
     }
+
 
     handleScore(answer){
         answer === this.rightAnswer ? this.score += 100 : this.score -= 50;
@@ -23,11 +30,12 @@ class Game {
         const currentData = this.gameData.shift();
         this.h2.textContent = currentData.question;
         this.fillAnswers(currentData.answers);
+        this.answerContainers.forEach(container => container.addEventListener('click', this.handleClick));
     }
 
     fillAnswers(answers){
         let i = 0; 
-        for (const container of this.answersP) {
+        for (const container of this.answerContainers) {
             container.querySelector(".answer").textContent = answers[i].answer;
             i++;
        }
@@ -35,7 +43,7 @@ class Game {
 
     init(){
         this.h2 = document.querySelector("#playfield > h2");
-        this.answersP = document.querySelectorAll(".answer-container");
+        this.answerContainers = document.querySelectorAll(".answer-container");
         this.provideNewQuestions()
     }
 

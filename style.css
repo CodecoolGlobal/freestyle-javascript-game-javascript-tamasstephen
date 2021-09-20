@@ -1,0 +1,8 @@
+*{
+    box-sizing: border-box;
+}
+
+.noClick {
+    pointer-events: none;
+}
+
