@@ -17,6 +17,7 @@ class Game {
 
 	handleScore(answer) {
 		answer === this.rightAnswer ? (this.score += 100) : (this.score -= 50);
+		return answer === this.rightAnswer;
 	}
 
 	provideNewQuestions() {
@@ -76,6 +77,31 @@ class Game {
 			}
 			document.querySelector("#timer").textContent = this.timeLimit - currentTime;
 		}, 1000)
+	}
+
+	highlightAnswers(answer, container){
+		const isRight = answer === this.rightAnswer;
+		if(isRight){
+			container.classList.add("right");
+		} else {
+			container.classList.add("err");
+		}
+		util.wait(1000).then(()=>{
+			container.classList.contains("right") ? container.classList.remove("right") : container.classList.remove("err");
+			this.runflipCardAnim();
+		})
+		
+	}
+
+	runflipCardAnim(){
+			const cards = document.querySelectorAll(".answer-front");
+			const cardsB = document.querySelectorAll(".answer-back");
+			cards.forEach(card=>card.classList.add("flipped"));
+			cardsB.forEach(card=>card.classList.add("flipped"));
+			util.wait(900).then(()=>{
+				cards.forEach(card=>card.classList.remove("flipped"));
+				cardsB.forEach(card=>card.classList.remove("flipped"));
+			})
 	}
 
 
