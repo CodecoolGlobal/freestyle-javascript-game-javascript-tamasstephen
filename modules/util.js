@@ -7,7 +7,7 @@ const util = {
             obj.answerContainers.forEach(el => el.removeEventListener("click", obj.handleClick));
             const answer = e.currentTarget.querySelector(".answer").textContent
             obj.handleScore(answer);
-            obj.provideNewQuestions();
+            obj.checkQuestionsLeft() ? obj.endgame() : obj.provideNewQuestions();
         }
         return handleClick
     },

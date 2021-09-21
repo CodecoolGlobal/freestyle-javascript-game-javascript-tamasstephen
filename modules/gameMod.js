@@ -1,4 +1,5 @@
 import { util } from "./util.js";
+import { createEndScreen, removeElement } from "./createBoard.js";
 export { Game }
 
 class Game {
@@ -40,10 +41,23 @@ class Game {
         }
     }
 
+    checkQuestionsLeft(){
+        return this.gameData.length === 0 ? true : false;
+    }
+
+    endgame(){
+        const elementToRemove = document.querySelector("#playfield");
+        removeElement(elementToRemove);
+        const endScreen = createEndScreen();
+        endScreen.querySelector("p:first-child").textContent = "Your score is:";
+        endScreen.querySelector("p:last-child").textContent = this.score;
+        document.querySelector(".wrapper").appendChild(endScreen);
+    }
+
     init(){
         this.h2 = document.querySelector("#playfield > h2");
         this.answerContainers = document.querySelectorAll(".answer-container");
-        this.provideNewQuestions()
+        this.provideNewQuestions();
     }
 
 }

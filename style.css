@@ -6,3 +6,7 @@
     pointer-events: none;
 }
 
+.answer-container {
+    cursor: pointer;
+}
+

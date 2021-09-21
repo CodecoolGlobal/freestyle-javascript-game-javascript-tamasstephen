@@ -1,4 +1,4 @@
-export { createBoard }
+export { createBoard, removeElement, createEndScreen }
 
 function createBoard() {
     const newDiv = document.createElement('div');
@@ -27,4 +27,16 @@ function createBoard() {
         }
     }
     return newDiv;
+}
+
+function removeElement(el){
+    el.remove();
+}
+
+function createEndScreen(){
+    const div = document.createElement("div");
+    div.classList.add("endscreen");
+    const divContent = `<p></p><p></p>`;
+    div.innerHTML = divContent;
+    return div;
 }
