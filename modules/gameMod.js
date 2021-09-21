@@ -66,7 +66,7 @@ class Game {
 		document.querySelector('.wrapper').appendChild(endScreen);
 	}
 
-	startCounter(currentTime = 1){
+	startCounter(currentTime = 0){
 		return setInterval(()=>{
 			currentTime += 1;
 			if(currentTime >= this.timeLimit){
@@ -74,7 +74,7 @@ class Game {
 				clearInterval(this.counter);
 				this.endgame();
 			}
-			document.querySelector("#timer").textContent = currentTime;
+			document.querySelector("#timer").textContent = this.timeLimit - currentTime;
 		}, 1000)
 	}
 
@@ -84,6 +84,7 @@ class Game {
 		this.answerContainers = document.querySelectorAll('.answer-container');
 		document.querySelector('.status-inner').style.width = '1%';
 		document.body.appendChild(createTimerElement());
+		document.querySelector("#timer").textContent = this.timeLimit;
 		this.provideNewQuestions();
 	}
 }
