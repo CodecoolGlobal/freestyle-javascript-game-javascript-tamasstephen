@@ -7,7 +7,7 @@ class Game {
 		this.gameData = gameData;
 		this.totalQuestionNumber = this.gameData.length;
 		this.timeLimit = timer;
-		this.rightAnswer = this.rightAnswer;
+		this.rightAnswer = null;
 		this.score = 0;
 		this.h2 = null;
 		this.answerContainers = null;
@@ -75,7 +75,6 @@ class Game {
 		return setInterval(()=>{
 			currentTime += 1;
 			if(currentTime >= this.timeLimit){
-				console.log(this);
 				clearInterval(this.counter);
 				this.endgame();
 			}
@@ -92,10 +91,9 @@ class Game {
 			innerAnswer.classList.add("err");
 		}
 		util.wait(500).then(()=>{
-			innerAnswer.classList.contains("right") ? innerAnswer.classList.remove("right") : innerAnswer.classList.remove("err");
+			isRight ? innerAnswer.classList.remove("right") : innerAnswer.classList.remove("err");
 			this.runflipCardAnim();
 		})
-		
 	}
 
 	runflipCardAnim(){
