@@ -9,7 +9,7 @@ const util = {
             const answer = e.currentTarget.querySelector(".answer").textContent
             obj.handleScore(answer);
             obj.highlightAnswers(answer, this);
-            util.wait(1500).then(()=>{
+            util.wait(1000).then(()=>{
                 obj.checkQuestionsLeft() ? obj.endgame() : obj.provideNewQuestions();
             })
         }

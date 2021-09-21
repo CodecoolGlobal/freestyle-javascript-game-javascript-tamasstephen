@@ -68,10 +68,12 @@ body {
     width: 800px;
     padding-bottom: 3rem;
     padding-top: 2rem;
+    transition: .8s;
 }
 
 #playfield.close{
-    transform: scale(.3);
+    transform: scale(0);
+    opacity: .1;
 }
 
 .answer-container {
@@ -95,7 +97,7 @@ body {
     width: 550px;
     height: 80px;
     backface-visibility: hidden;
-    transition: .8s ease-in;
+    transition: .6s ease-in;
     box-shadow: 0 0 1rem .2rem rgba(0, 0, 0, .15);
 }
 

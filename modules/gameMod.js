@@ -61,11 +61,14 @@ class Game {
 
 	endgame() {
 		const elementToRemove = document.querySelector('#playfield');
-		removeElement(elementToRemove);
-		const endScreen = createEndScreen();
-		endScreen.querySelector('p:first-child').textContent = 'Your score is:';
-		endScreen.querySelector('p:last-child').textContent = this.score;
-		document.querySelector('.wrapper').appendChild(endScreen);
+		elementToRemove.classList.add("close");
+		util.wait(800).then(()=> {
+			removeElement(elementToRemove);
+			const endScreen = createEndScreen();
+			endScreen.querySelector('p:first-child').textContent = 'Your score is:';
+			endScreen.querySelector('p:last-child').textContent = this.score;
+			document.querySelector('.wrapper').appendChild(endScreen);
+	})
 	}
 
 	startCounter(currentTime = 0){
@@ -88,7 +91,7 @@ class Game {
 		} else {
 			innerAnswer.classList.add("err");
 		}
-		util.wait(700).then(()=>{
+		util.wait(500).then(()=>{
 			innerAnswer.classList.contains("right") ? innerAnswer.classList.remove("right") : innerAnswer.classList.remove("err");
 			this.runflipCardAnim();
 		})
@@ -100,7 +103,7 @@ class Game {
 			const cardsB = document.querySelectorAll(".answer-back");
 			cards.forEach(card=>card.classList.add("flipped"));
 			cardsB.forEach(card=>card.classList.add("flipped"));
-			util.wait(900).then(()=>{
+			util.wait(600).then(()=>{
 				cards.forEach(card=>card.classList.remove("flipped"));
 				cardsB.forEach(card=>card.classList.remove("flipped"));
 			})
