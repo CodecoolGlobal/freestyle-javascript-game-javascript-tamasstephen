@@ -1,17 +1,18 @@
 import { util } from './util.js';
-import { createEndScreen, removeElement } from './createBoard.js';
+import { createEndScreen, removeElement, createTimerElement } from './createBoard.js';
 export { Game };
 
 class Game {
 	constructor(gameData, timer = 20) {
 		this.gameData = gameData;
 		this.totalQuestionNumber = this.gameData.length;
-		this.timeLimit = this.timeLimit;
+		this.timeLimit = timer;
 		this.rightAnswer = this.rightAnswer;
 		this.score = 0;
 		this.h2 = null;
 		this.answerContainers = null;
 		this.handleClick = util.clickHandlerWrapper(this);
+		this.counter = null;
 	}
 
 	handleScore(answer) {
@@ -23,6 +24,7 @@ class Game {
 		this.h2.textContent = currentData.question;
 		this.fillAnswers(currentData.answers);
 		this.answerContainers.forEach((container) => container.addEventListener('click', this.handleClick));
+		this.counter = this.startCounter();
 		this.setStatusbar();
 	}
 
@@ -64,11 +66,24 @@ class Game {
 		document.querySelector('.wrapper').appendChild(endScreen);
 	}
 
+	startCounter(currentTime = 1){
+		return setInterval(()=>{
+			currentTime += 1;
+			if(currentTime >= this.timeLimit){
+				console.log(this);
+				clearInterval(this.counter);
+				this.endgame();
+			}
+			document.querySelector("#timer").textContent = currentTime;
+		}, 1000)
+	}
+
 
 	init() {
 		this.h2 = document.querySelector('#playfield > h2');
 		this.answerContainers = document.querySelectorAll('.answer-container');
 		document.querySelector('.status-inner').style.width = '1%';
+		document.body.appendChild(createTimerElement());
 		this.provideNewQuestions();
 	}
 }
