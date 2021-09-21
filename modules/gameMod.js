@@ -5,6 +5,7 @@ export { Game }
 class Game {
     constructor(gameData, timer=20){
         this.gameData = gameData;
+        this.totalQuestionNumber = this.gameData.length;
         this.timeLimit = this.timeLimit;
         this.rightAnswer = this.rightAnswer;
         this.score = 0;
@@ -33,6 +34,10 @@ class Game {
             this.saveRightAnswer(answers[i]);
             i++;
        }
+    }
+
+    setStatusbar(){
+        const currentLength = this.totalQuestionNumber -  this.gameData.length;
     }
 
     saveRightAnswer(answer){
