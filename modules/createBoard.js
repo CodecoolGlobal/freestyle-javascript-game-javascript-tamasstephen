@@ -44,6 +44,6 @@ function createEndScreen(){
 function createTimerElement(){
     const timerEl = document.createElement('div');
     timerEl.classList.add("timer-wrapper");
-    timerEl.innerHTML="<p id='timer'>1<p>";
+    timerEl.innerHTML="<p id='timer'><p>";
     return timerEl;
 }

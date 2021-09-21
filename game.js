@@ -7,6 +7,6 @@ initGame();
 function initGame() {
     const board = createBoard();
     document.querySelector(".wrapper").appendChild(board);
-    const game = new Game(dummyData, 15);
+    const game = new Game(dummyData, 5);
     game.init(); 
 }
