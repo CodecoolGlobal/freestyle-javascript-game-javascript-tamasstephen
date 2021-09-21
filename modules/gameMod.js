@@ -72,6 +72,7 @@ class Game {
 			if(currentTime >= this.timeLimit){
 				console.log(this);
 				clearInterval(this.counter);
+				this.endgame();
 			}
 			currentTime += 1;
 		}, 1000)
