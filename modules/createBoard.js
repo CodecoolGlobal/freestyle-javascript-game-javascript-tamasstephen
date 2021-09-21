@@ -1,4 +1,4 @@
-export { createBoard, removeElement, createEndScreen }
+export { createBoard, removeElement, createEndScreen, createTimerElement }
 
 function createBoard() {
     const newDiv = document.createElement('div');
@@ -39,4 +39,11 @@ function createEndScreen(){
     const divContent = `<p></p><p></p>`;
     div.innerHTML = divContent;
     return div;
+}
+
+function createTimerElement(){
+    const timerEl = document.createElement('div');
+    timerEl.classList.add("timer-wrapper");
+    timerEl.innerHTML="<p id='timer'>1<p>";
+    return timerEl;
 }

@@ -1,5 +1,5 @@
 import { util } from './util.js';
-import { createEndScreen, removeElement } from './createBoard.js';
+import { createEndScreen, removeElement, createTimerElement } from './createBoard.js';
 export { Game };
 
 class Game {
@@ -68,13 +68,13 @@ class Game {
 
 	startCounter(currentTime = 1){
 		return setInterval(()=>{
-			console.log(currentTime);
+			currentTime += 1;
 			if(currentTime >= this.timeLimit){
 				console.log(this);
 				clearInterval(this.counter);
 				this.endgame();
 			}
-			currentTime += 1;
+			document.querySelector("#timer").textContent = currentTime;
 		}, 1000)
 	}
 
@@ -83,6 +83,7 @@ class Game {
 		this.h2 = document.querySelector('#playfield > h2');
 		this.answerContainers = document.querySelectorAll('.answer-container');
 		document.querySelector('.status-inner').style.width = '1%';
+		document.body.appendChild(createTimerElement());
 		this.provideNewQuestions();
 	}
 }
