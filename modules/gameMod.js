@@ -6,12 +6,13 @@ class Game {
 	constructor(gameData, timer = 20) {
 		this.gameData = gameData;
 		this.totalQuestionNumber = this.gameData.length;
-		this.timeLimit = this.timeLimit;
+		this.timeLimit = timer;
 		this.rightAnswer = this.rightAnswer;
 		this.score = 0;
 		this.h2 = null;
 		this.answerContainers = null;
 		this.handleClick = util.clickHandlerWrapper(this);
+		this.counter = null;
 	}
 
 	handleScore(answer) {
@@ -23,6 +24,7 @@ class Game {
 		this.h2.textContent = currentData.question;
 		this.fillAnswers(currentData.answers);
 		this.answerContainers.forEach((container) => container.addEventListener('click', this.handleClick));
+		this.counter = this.startCounter();
 		this.setStatusbar();
 	}
 
@@ -62,6 +64,17 @@ class Game {
 		endScreen.querySelector('p:first-child').textContent = 'Your score is:';
 		endScreen.querySelector('p:last-child').textContent = this.score;
 		document.querySelector('.wrapper').appendChild(endScreen);
+	}
+
+	startCounter(currentTime = 1){
+		return setInterval(()=>{
+			console.log(currentTime);
+			if(currentTime >= this.timeLimit){
+				console.log(this);
+				clearInterval(this.counter);
+			}
+			currentTime += 1;
+		}, 1000)
 	}
 
 
