@@ -119,14 +119,16 @@ body {
 
 .answer-back.flipped {
     transform: rotateX(0deg);
+    box-shadow: 0 0 2rem (53, 210, 31, .4);
 }
 
-.answer-container.err{
-    border: 3px solid var(--error-color);
+.answer-front.err{
+    background-color: var(--error-color);
+    box-shadow: 0 0 2rem (255, 60, 0, .4);
 }
 
-.answer-container.right{
-    border: 3px solid var(--ok-color);
+.answer-front.right{
+    background-color: var(--ok-color)
 }
 
 .answer-container.right,

@@ -81,13 +81,14 @@ class Game {
 
 	highlightAnswers(answer, container){
 		const isRight = answer === this.rightAnswer;
+		const innerAnswer = container.querySelector(".answer-front");
 		if(isRight){
-			container.classList.add("right");
+			innerAnswer.classList.add("right");
 		} else {
-			container.classList.add("err");
+			innerAnswer.classList.add("err");
 		}
-		util.wait(1000).then(()=>{
-			container.classList.contains("right") ? container.classList.remove("right") : container.classList.remove("err");
+		util.wait(700).then(()=>{
+			innerAnswer.classList.contains("right") ? innerAnswer.classList.remove("right") : innerAnswer.classList.remove("err");
 			this.runflipCardAnim();
 		})
 		
