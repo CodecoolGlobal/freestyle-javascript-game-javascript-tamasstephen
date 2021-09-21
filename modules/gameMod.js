@@ -1,5 +1,5 @@
 import { util } from './util.js';
-import { createEndScreen, removeElement, createTimerElement } from './createBoard.js';
+import { createEndScreen, removeElement, createCustomElement } from './createBoard.js';
 export { Game };
 
 class Game {
@@ -17,6 +17,8 @@ class Game {
 
 	handleScore(answer) {
 		answer === this.rightAnswer ? (this.score += 100) : (this.score -= 50);
+		document.querySelector("#score").textContent = this.score;
+		return answer === this.rightAnswer;
 	}
 
 	provideNewQuestions() {
@@ -78,12 +80,40 @@ class Game {
 		}, 1000)
 	}
 
+	highlightAnswers(answer, container){
+		const isRight = answer === this.rightAnswer;
+		const innerAnswer = container.querySelector(".answer-front");
+		if(isRight){
+			innerAnswer.classList.add("right");
+		} else {
+			innerAnswer.classList.add("err");
+		}
+		util.wait(700).then(()=>{
+			innerAnswer.classList.contains("right") ? innerAnswer.classList.remove("right") : innerAnswer.classList.remove("err");
+			this.runflipCardAnim();
+		})
+		
+	}
+
+	runflipCardAnim(){
+			const cards = document.querySelectorAll(".answer-front");
+			const cardsB = document.querySelectorAll(".answer-back");
+			cards.forEach(card=>card.classList.add("flipped"));
+			cardsB.forEach(card=>card.classList.add("flipped"));
+			util.wait(900).then(()=>{
+				cards.forEach(card=>card.classList.remove("flipped"));
+				cardsB.forEach(card=>card.classList.remove("flipped"));
+			})
+	}
+
 
 	init() {
 		this.h2 = document.querySelector('#playfield > h2');
 		this.answerContainers = document.querySelectorAll('.answer-container');
 		document.querySelector('.status-inner').style.width = '1%';
-		document.body.appendChild(createTimerElement());
+		document.body.appendChild(createCustomElement("timer"));
+		document.body.appendChild(createCustomElement("score", "score"));
+		document.querySelector("#score").textContent = this.score;	
 		document.querySelector("#timer").textContent = this.timeLimit;
 		this.provideNewQuestions();
 	}
