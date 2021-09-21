@@ -18,6 +18,10 @@ const util = {
 
     wait(ms){
         return new Promise((resolve)=>setTimeout(resolve, ms));
-    }
+    },
+
+    capitalizeFirstLetter(string) {
+        return string.charAt(0).toUpperCase() + string.slice(1);
+      },
 
 }

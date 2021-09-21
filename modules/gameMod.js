@@ -1,5 +1,5 @@
 import { util } from './util.js';
-import { createEndScreen, removeElement, createTimerElement } from './createBoard.js';
+import { createEndScreen, removeElement, createCustomElement } from './createBoard.js';
 export { Game };
 
 class Game {
@@ -17,6 +17,7 @@ class Game {
 
 	handleScore(answer) {
 		answer === this.rightAnswer ? (this.score += 100) : (this.score -= 50);
+		document.querySelector("#score").textContent = this.score;
 		return answer === this.rightAnswer;
 	}
 
@@ -110,7 +111,9 @@ class Game {
 		this.h2 = document.querySelector('#playfield > h2');
 		this.answerContainers = document.querySelectorAll('.answer-container');
 		document.querySelector('.status-inner').style.width = '1%';
-		document.body.appendChild(createTimerElement());
+		document.body.appendChild(createCustomElement("timer"));
+		document.body.appendChild(createCustomElement("score", "score"));
+		document.querySelector("#score").textContent = this.score;	
 		document.querySelector("#timer").textContent = this.timeLimit;
 		this.provideNewQuestions();
 	}

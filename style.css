@@ -51,10 +51,13 @@ body {
     width: 0;
     background-color: var(--color-coral);
     max-width: 550px;
-    transition: 0.8s ease;
+    transition: 0.8s ease-out;
 }
 
-#playfield, .wrapper, .endscreen{
+#playfield, 
+.wrapper, 
+.endscreen,
+.score-wrapper {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -142,28 +145,47 @@ p.answer {
     font-weight: bold;
 }
 
-.timer-wrapper {
-    width: 7rem;
-    height: 7rem;
+.timer-wrapper,
+.score-wrapper{
+    width: 8rem;
+    height: 8rem;
     display: flex;
     align-items: center;
     justify-content: center;
     position: absolute;
-    right: 5rem;
-    top: 1.5rem;
     border-radius: 50%;
-    border: 8px solid var(--color-coral);
-    box-shadow: 0 0 2rem .1rem rgba(255, 127, 80, .35);
+
 }
 
-#timer {
+.timer-wrapper {
+    right: 5rem;
+    top: 1.5rem;
+    box-shadow: 0 0 2rem .1rem rgba(255, 127, 80, .35);
+    border: 8px solid var(--color-coral);
+}
+
+.score-wrapper {
+    top: 1.5rem;
+    left: 5rem;
+    border: 8px solid #339cff;
+    box-shadow: 0 0 2rem .15rem rgba(51, 156, 255, .3);
+}
+
+
+#timer,
+#score {
     font-size: 2rem;
     font-weight: bold;
 }
 
+
 #text-status {
     font-size: 2.5rem;
     margin-bottom: 0.5rem;
+}
+
+.score-wrapper p{
+    margin: 0;
 }
 
 #playfield, .endscreen{
@@ -176,4 +198,14 @@ p.answer {
 .endscreen{
     min-width: 300px;
     min-height: 200px;
+}
+
+.endscreen p:first-child {
+    font-size: 2rem;
+}
+
+.endscreen p:last-child {
+    font-size: 4rem;
+    margin-top: 0;
+    font-weight: bold;
 }
