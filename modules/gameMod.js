@@ -106,15 +106,19 @@ class Game {
 			})
 	}
 
-
-	init() {
-		this.h2 = document.querySelector('#playfield > h2');
-		this.answerContainers = document.querySelectorAll('.answer-container');
+	initElements(){
 		document.querySelector('.status-inner').style.width = '1%';
 		document.body.appendChild(createCustomElement("timer"));
 		document.body.appendChild(createCustomElement("score", "score"));
 		document.querySelector("#score").textContent = this.score;	
 		document.querySelector("#timer").textContent = this.timeLimit;
+	}
+
+
+	init() {
+		this.h2 = document.querySelector('#playfield > h2');
+		this.answerContainers = document.querySelectorAll('.answer-container');
+		this.initElements();
 		this.provideNewQuestions();
 	}
 }
