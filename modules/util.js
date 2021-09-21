@@ -12,4 +12,8 @@ const util = {
         return handleClick
     },
 
+    wait(ms){
+        return new Promise((resolve)=>setTimeout(resolve, ms));
+    }
+
 }

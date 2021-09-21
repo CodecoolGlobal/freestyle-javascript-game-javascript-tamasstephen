@@ -10,3 +10,23 @@
     cursor: pointer;
 }
 
+.status-outer,
+.status-inner{
+    height: 1rem;
+    overflow: hidden;
+    background-color: grey;
+    border-radius: 8px;
+}
+
+.status-outer {
+    background-color: grey;
+    width: 550px;
+}
+
+.status-inner{
+    width: 0;
+    background-color: green;
+    max-width: 550px;
+    transition: 0.8s ease;
+}
+

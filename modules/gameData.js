@@ -18,5 +18,23 @@ const dummyData = [
             {answer: "Alone in the dark", right: true},
             {answer: "Dark temptation"}
         ]
-    }
+    },
+    {
+        question: "What is the name of the infamous Uwe Boll movie from 2005?",
+        answers: [
+            {answer: "Survivor", right: false},
+            {answer: "The King's men", right: false},
+            {answer: "Alone in the dark", right: true},
+            {answer: "Dark temptation"}
+        ]
+    },
+    {
+        question: "What is the name of the infamous Uwe Boll movie from 2005?",
+        answers: [
+            {answer: "Survivor", right: false},
+            {answer: "The King's men", right: false},
+            {answer: "Alone in the dark", right: true},
+            {answer: "Dark temptation"}
+        ]
+    },
 ]
