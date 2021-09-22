@@ -7,7 +7,7 @@ import {createMenuButtons} from "./modules/menu.js";
 
 function initGame() {
     const board = createBoard();
-    const elementToRemove = document.querySelector('.menuBtn');
+    const elementToRemove = document.querySelector('.buttons');
     document.querySelector(".wrapper").appendChild(board);
 
     removeElement(elementToRemove);
