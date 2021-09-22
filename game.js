@@ -9,9 +9,14 @@ function initGame() {
     const board = createBoard();
     const elementToRemove = document.querySelector('.menuBtn');
     document.querySelector(".wrapper").appendChild(board);
+
     removeElement(elementToRemove);
     const game = new Game(dummyData, 6000);
     game.init();
+
+    const game = new Game(dummyData, 105);
+    game.init(); 
+
 }
 
 
