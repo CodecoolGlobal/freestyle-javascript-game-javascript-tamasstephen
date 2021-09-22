@@ -13,10 +13,6 @@ function initGame() {
     removeElement(elementToRemove);
     const game = new Game(dummyData, 6000);
     game.init();
-
-    const game = new Game(dummyData, 105);
-    game.init(); 
-
 }
 
 
