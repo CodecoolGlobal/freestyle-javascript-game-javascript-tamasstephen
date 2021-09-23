@@ -1,5 +1,5 @@
 import { util } from './util.js';
-import { createEndScreen, removeElement, createCustomElement } from './createBoard.js';
+import { createEndScreen, removeElement, createCustomElement, runflipCardAnim } from './createBoard.js';
 import { Menu } from './menu.js';
 import { validData } from './gameData.js';
 export { Game };
@@ -93,20 +93,10 @@ class Game {
 		}
 		util.wait(500).then(()=>{
 			isRight ? innerAnswer.classList.remove("right") : innerAnswer.classList.remove("err");
-			this.runflipCardAnim();
+			runflipCardAnim();
 		})
 	}
 
-	runflipCardAnim(){
-			const cards = document.querySelectorAll(".answer-front");
-			const cardsB = document.querySelectorAll(".answer-back");
-			cards.forEach(card=>card.classList.add("flipped"));
-			cardsB.forEach(card=>card.classList.add("flipped"));
-			util.wait(600).then(()=>{
-				cards.forEach(card=>card.classList.remove("flipped"));
-				cardsB.forEach(card=>card.classList.remove("flipped"));
-			})
-	}
 
 	initElements(){
 		document.querySelector('.status-inner').style.width = '1%';

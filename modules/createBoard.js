@@ -1,4 +1,4 @@
-export { createBoard, removeElement, createEndScreen, createCustomElement };
+export { createBoard, removeElement, createEndScreen, createCustomElement, runflipCardAnim };
 import { util } from './util.js';
 
 function createBoard() {
@@ -57,4 +57,20 @@ function setupEndScreen(endScreen, score){
 	endScreen.querySelector('p:first-child').textContent = 'Your score is:';
 	endScreen.querySelector('p:last-child').textContent = score;
 	document.querySelector('.wrapper').appendChild(endScreen);
+}
+
+function runflipCardAnim(){
+		const cards = document.querySelectorAll(".answer-front");
+		const cardsB = document.querySelectorAll(".answer-back");
+		handleFlipCardStates(cards, cardsB);
+}
+
+function handleFlipCardStates(frontCards, backCards){
+	frontCards.forEach(card=>card.classList.add("flipped"));
+	backCards.forEach(card=>card.classList.add("flipped"));
+	util.wait(600).then(()=>{
+		frontCards.forEach(card=>card.classList.remove("flipped"));
+		backCards.forEach(card=>card.classList.remove("flipped"));
+	})
+
 }
