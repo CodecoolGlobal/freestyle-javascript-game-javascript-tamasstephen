@@ -1,4 +1,5 @@
 export { Menu };
+import { createBoard } from "./createBoard.js"
 
 class Menu{
 
@@ -13,7 +14,8 @@ class Menu{
 initMenu() {
     this.createMenuButtons();
     this.makeDifficultyOption();
-    this.initDifficulty(this);
+    this.initDifficulty();
+    console.log(this.topics);
     const menuBtn = document.querySelector('.menuBtn');
     menuBtn.addEventListener("click", this.game.initGame);
 }
@@ -27,6 +29,12 @@ createMenuButtons() {
     menuQuizButton.innerText = 'Start game';
     btnDiv.appendChild(menuQuizButton);
     document.querySelector(".wrapper").appendChild(btnDiv);
+    menuQuizButton.addEventListener('click', ()=>{
+       document.querySelector(".buttons").remove();
+       document.querySelector(".wrapper").appendChild(createBoard());
+       const newGame = new this.game(this.topics, this.difficultyLevel[this.currentDifficulty]);
+       newGame.init();
+    })
 }
 
 // creates menu divs
@@ -52,14 +60,13 @@ makeDifficultyOption() {
 }
 
 //remvoves the main menu, replaces it with diff levels
-initDifficulty(obj) {
+initDifficulty() {
     const diffLevelButton = document.querySelector('.diff-level');
     const buttonsDiv = document.querySelector('.buttons');
     diffLevelButton.addEventListener('click', () => {
         buttonsDiv.remove();
-        console.log(this);
-        obj.makeAndChooseDifficultyLevel();
-        obj.getDifficultyLevel();
+        this.makeAndChooseDifficultyLevel();
+        this.getDifficultyLevel();
     });
 }
 
@@ -71,8 +78,6 @@ getDifficultyLevel() {
         button.addEventListener('click', (e) => {
             console.log(this);
             this.currentDifficulty = e.currentTarget.textContent;
-            console.log(this.currentDifficulty);
-            console.log(this.difficultyLevel[this.currentDifficulty])
             diffLevelButton.remove();
             this.initMenu();
         });
