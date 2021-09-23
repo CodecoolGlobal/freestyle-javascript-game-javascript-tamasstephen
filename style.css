@@ -225,7 +225,8 @@ p.answer {
 }
 
 .buttons,
-.diff-levels {
+.diff-levels,
+.topic-buttons {
     width: 550px;
     padding-top: 2rem;
     padding-bottom: 2rem;
@@ -239,7 +240,8 @@ p.answer {
 }
 
 .buttons div,
-.diff-levels > .menuBtn {
+.diff-levels > .menuBtn,
+.topic-buttons > .topicBtn {
     width: 300px;
     height: 50px;
     border-radius: 8px;
@@ -252,10 +254,13 @@ p.answer {
 }
 
 .menuBtn,
-.diff-level {
+.diff-level,
+.topicBtn,
+.topic-button {
     display: flex;
     align-items: center;
     justify-content: center;
+    cursor: pointer;
 }
 
 .menuBtn {
@@ -263,11 +268,14 @@ p.answer {
 }
 
 div.diff-levels > div.menuBtn,
-.diff-level {
+.diff-level,
+.topicBtn,
+.topic-button {
     background-color: var(--card-color);
 }
 
-div.diff-levels > div.menuBtn + div.menuBtn {
+div.diff-levels > div.menuBtn + div.menuBtn ,
+.topicBtn + .topicBtn{
     margin-top: 1.5rem;
 }
 

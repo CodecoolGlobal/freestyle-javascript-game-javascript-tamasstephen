@@ -1,5 +1,7 @@
 import { util } from './util.js';
 import { createEndScreen, removeElement, createCustomElement } from './createBoard.js';
+import { Menu } from './menu.js';
+import { validData } from './gameData.js';
 export { Game };
 
 class Game {
@@ -68,6 +70,14 @@ class Game {
 			endScreen.querySelector('p:first-child').textContent = 'Your score is:';
 			endScreen.querySelector('p:last-child').textContent = this.score;
 			document.querySelector('.wrapper').appendChild(endScreen);
+			endScreen.addEventListener('click', ()=>{
+				document.querySelector('.headline').classList.add('invisible');
+				document.querySelector('.score-wrapper').remove();
+				document.querySelector('.timer-wrapper').remove();
+				endScreen.remove()
+				const menu = new Menu(Game, validData);
+				menu.initMenu();
+			})
 	})
 	}
 
