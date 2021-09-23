@@ -9,14 +9,14 @@ class Menu{
         this.difficultyLevel = {'easy': 30, 'medium': 20, 'hard': 10};
         this.currentDifficulty = 'easy';
         this.topics = topics;
-        this.currentTopic = topics[0];
+        this.currentTopic = "Misc";
     }
 
 initMenu() {
     this.createMenuButtons();
     this.makeDifficultyOption();
     this.initDifficulty();
-    console.log(this.topics);
+    console.log(this.topics[this.currentTopic])
     const menuBtn = document.querySelector('.menuBtn');
     menuBtn.addEventListener("click", this.game.initGame);
 }
@@ -33,7 +33,8 @@ createMenuButtons() {
     menuQuizButton.addEventListener('click', ()=>{
        document.querySelector(".buttons").remove();
        document.querySelector(".wrapper").appendChild(createBoard());
-       const newGame = new this.game(this.topics, this.difficultyLevel[this.currentDifficulty]);
+       const newGame = new this.game(this.topics[this.currentTopic], this.difficultyLevel[this.currentDifficulty]);
+       // TODO: remove invisible class from headline
        newGame.init();
     })
 }
@@ -77,7 +78,6 @@ getDifficultyLevel() {
     const diffLevelButton = document.querySelector('.diff-levels');
     for (let button of difficultyMenuButtons) {
         button.addEventListener('click', (e) => {
-            console.log(this);
             this.currentDifficulty = e.currentTarget.textContent.toLowerCase();
             diffLevelButton.remove();
             this.initMenu();

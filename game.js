@@ -1,6 +1,5 @@
 import {Game} from "./modules/gameMod.js";
-import {createBoard, removeElement} from "./modules/createBoard.js";
-import {dummyData} from "./modules/gameData.js";
+import {validData} from "./modules/gameData.js";
 import { Menu } from "./modules/menu.js";
 
 initGame();
@@ -8,7 +7,7 @@ initGame();
 function initGame() {
     // const board = createBoard();
     // document.querySelector(".wrapper").appendChild(board);
-    const menu = new Menu(Game, dummyData);
+    const menu = new Menu(Game, validData);
     //elementToRemove.remove();
     //const game = new Game(dummyData, 6000);
     //game.init();
