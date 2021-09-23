@@ -9,7 +9,7 @@ class Menu {
         this.difficultyLevel = {'easy': 30, 'medium': 20, 'hard': 10};
         this.currentDifficulty = 'easy';
         this.topics = topics;
-        this.currentTopic = "Misc";
+        this.currentTopic = "General";
     }
 
     initMenu() {
