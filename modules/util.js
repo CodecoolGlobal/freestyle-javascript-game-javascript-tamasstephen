@@ -1,3 +1,4 @@
+import { removeEndFieldItems } from "./createBoard.js";
 export { util }
 
 const util = {
@@ -34,10 +35,7 @@ const util = {
 
     endGameHandlerWrap(menuObj, gameObj, validData){
         function executeGameEnd(){
-            document.querySelector('.headline').classList.add('invisible');
-            document.querySelector('.score-wrapper').remove();
-            document.querySelector('.timer-wrapper').remove();
-            document.querySelector('.endscreen').remove()
+            removeEndFieldItems(); 
             const menu = new menuObj(gameObj, validData);
             menu.initMenu();
         }

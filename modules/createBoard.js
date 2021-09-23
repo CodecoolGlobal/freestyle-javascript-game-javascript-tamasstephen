@@ -1,4 +1,4 @@
-export { createBoard, removeElement, createEndScreen, createCustomElement, runflipCardAnim };
+export { createBoard, removeElement, createEndScreen, createCustomElement, runflipCardAnim, removeEndFieldItems };
 import { util } from './util.js';
 
 function createBoard() {
@@ -73,4 +73,11 @@ function handleFlipCardStates(frontCards, backCards){
 		backCards.forEach(card=>card.classList.remove("flipped"));
 	})
 
+}
+
+function removeEndFieldItems(){
+	document.querySelector('.headline').classList.add('invisible');
+	document.querySelector('.score-wrapper').remove();
+	document.querySelector('.timer-wrapper').remove();
+	document.querySelector('.endscreen').remove()
 }
