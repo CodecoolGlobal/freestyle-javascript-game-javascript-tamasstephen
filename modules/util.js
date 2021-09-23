@@ -23,5 +23,24 @@ const util = {
     capitalizeFirstLetter(string) {
         return string.charAt(0).toUpperCase() + string.slice(1);
       },
+    
+    copyArray(arr) {
+        const newArr = [];
+        for(const el of arr){
+            newArr.push(el);
+        }
+        return newArr;
+    },
 
+    endGameHandlerWrap(menuObj, gameObj, validData){
+        function executeGameEnd(){
+            document.querySelector('.headline').classList.add('invisible');
+            document.querySelector('.score-wrapper').remove();
+            document.querySelector('.timer-wrapper').remove();
+            document.querySelector('.endscreen').remove()
+            const menu = new menuObj(gameObj, validData);
+            menu.initMenu();
+        }
+        return executeGameEnd;
+    }
 }
