@@ -19,7 +19,7 @@ class Game {
 
 	handleScore(answer) {
 		answer === this.rightAnswer ? (this.score += 100) : (this.score -= 50);
-		document.querySelector("#score").textContent = this.score;
+		document.querySelector('#score').textContent = this.score;
 		return answer === this.rightAnswer;
 	}
 
@@ -48,13 +48,11 @@ class Game {
 		const startPercentage = Number(statusBar.style.width.replace('%', ''));
 		const currentLength = this.totalQuestionNumber - this.gameData.length;
 		document.querySelector('#text-status').textContent = `Questions: ${currentLength}/${this.totalQuestionNumber}`;
-		statusBar.style.width = String(startPercentage + precentToAdd) + "%";
+		statusBar.style.width = String(startPercentage + precentToAdd) + '%';
 	}
 
 	saveRightAnswer(answer) {
-		if (answer.right) {
-			this.rightAnswer = answer.answer;
-		}
+		if (answer.right) this.rightAnswer = answer.answer;
 	}
 
 	checkQuestionsLeft() {
@@ -63,49 +61,43 @@ class Game {
 
 	endgame() {
 		const elementToRemove = document.querySelector('#playfield');
-		const gameEnd = util.endGameHandlerWrap(Menu, Game, validData);
-		elementToRemove.classList.add("close");
-		util.wait(800).then(()=> {
+		const gameEndFunc = util.endGameHandlerWrap(Menu, Game, validData);
+		elementToRemove.classList.add('close');
+		util.wait(800).then(() => {
 			removeElement(elementToRemove);
 			const endScreen = createEndScreen(this.score);
-			endScreen.addEventListener('click', gameEnd);
-	})
+			endScreen.addEventListener('click', gameEndFunc);
+		});
 	}
 
-	startCounter(currentTime = 0){
-		return setInterval(()=>{
+	startCounter(currentTime = 0) {
+		return setInterval(() => {
 			currentTime += 1;
-			if(currentTime >= this.timeLimit){
+			if (currentTime >= this.timeLimit) {
 				clearInterval(this.counter);
 				this.endgame();
 			}
-			document.querySelector("#timer").textContent = this.timeLimit - currentTime;
-		}, 1000)
+			document.querySelector('#timer').textContent = this.timeLimit - currentTime;
+		}, 1000);
 	}
 
-	highlightAnswers(answer, container){
+	highlightAnswers(answer, container) {
 		const isRight = answer === this.rightAnswer;
-		const innerAnswer = container.querySelector(".answer-front");
-		if(isRight){
-			innerAnswer.classList.add("right");
-		} else {
-			innerAnswer.classList.add("err");
-		}
-		util.wait(500).then(()=>{
-			isRight ? innerAnswer.classList.remove("right") : innerAnswer.classList.remove("err");
+		const innerAnswer = container.querySelector('.answer-front');
+		isRight ? innerAnswer.classList.add('right') : innerAnswer.classList.add('err');
+		util.wait(500).then(() => {
+			isRight ? innerAnswer.classList.remove('right') : innerAnswer.classList.remove('err');
 			runflipCardAnim();
-		})
+		});
 	}
 
-
-	initElements(){
+	initElements() {
 		document.querySelector('.status-inner').style.width = '1%';
-		document.body.appendChild(createCustomElement("timer"));
-		document.body.appendChild(createCustomElement("score", "score"));
-		document.querySelector("#score").textContent = this.score;	
-		document.querySelector("#timer").textContent = this.timeLimit;
+		document.body.appendChild(createCustomElement('timer'));
+		document.body.appendChild(createCustomElement('score', 'score'));
+		document.querySelector('#score').textContent = this.score;
+		document.querySelector('#timer').textContent = this.timeLimit;
 	}
-
 
 	init() {
 		this.h2 = document.querySelector('#playfield > h2');
