@@ -56,7 +56,7 @@ class Game {
 	}
 
 	checkQuestionsLeft() {
-		return this.gameData.length === 0 ? true : false;
+		return this.gameData.length === 0;
 	}
 
 	endgame() {
