@@ -23,5 +23,14 @@ const util = {
     capitalizeFirstLetter(string) {
         return string.charAt(0).toUpperCase() + string.slice(1);
       },
+    
+    copyArray(arr) {
+        const newArr = [];
+        for(const el of arr){
+            newArr.push(el);
+        }
+        return newArr;
+    }
+    
 
 }

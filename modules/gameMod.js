@@ -6,7 +6,7 @@ export { Game };
 
 class Game {
 	constructor(gameData, timer = 20) {
-		this.gameData = gameData;
+		this.gameData = util.copyArray(gameData);
 		this.totalQuestionNumber = this.gameData.length;
 		this.timeLimit = timer;
 		this.rightAnswer = null;
