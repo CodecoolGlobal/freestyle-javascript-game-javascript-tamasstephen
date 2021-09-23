@@ -1,5 +1,6 @@
 export { Menu };
 import { createBoard } from "./createBoard.js"
+import { util } from "./util.js"
 
 class Menu{
 
@@ -45,7 +46,7 @@ makeAndChooseDifficultyLevel() {
     for (const key of Object.keys(difficultyLevels)) {
         const newOptionDiv = document.createElement('div');
         newOptionDiv.classList.add('menuBtn');
-        newOptionDiv.innerText = key;
+        newOptionDiv.innerText = util.capitalizeFirstLetter(key);
         newDiv.appendChild(newOptionDiv);
     }
     document.querySelector(".wrapper").appendChild(newDiv);
@@ -55,7 +56,7 @@ makeAndChooseDifficultyLevel() {
 makeDifficultyOption() {
     const newDiv = document.createElement('div');
     newDiv.classList.add('diff-level');
-    newDiv.innerText = 'Difficulty Level';
+    newDiv.innerText = util.capitalizeFirstLetter(this.currentDifficulty);
     document.querySelector(".buttons").appendChild(newDiv);
 }
 
@@ -77,7 +78,7 @@ getDifficultyLevel() {
     for (let button of difficultyMenuButtons) {
         button.addEventListener('click', (e) => {
             console.log(this);
-            this.currentDifficulty = e.currentTarget.textContent;
+            this.currentDifficulty = e.currentTarget.textContent.toLowerCase();
             diffLevelButton.remove();
             this.initMenu();
         });
