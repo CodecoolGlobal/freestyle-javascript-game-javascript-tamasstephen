@@ -67,10 +67,7 @@ class Game {
 		elementToRemove.classList.add("close");
 		util.wait(800).then(()=> {
 			removeElement(elementToRemove);
-			const endScreen = createEndScreen();
-			endScreen.querySelector('p:first-child').textContent = 'Your score is:';
-			endScreen.querySelector('p:last-child').textContent = this.score;
-			document.querySelector('.wrapper').appendChild(endScreen);
+			const endScreen = createEndScreen(this.score);
 			endScreen.addEventListener('click', gameEnd);
 	})
 	}
