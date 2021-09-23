@@ -1,3 +1,4 @@
+import { removeEndFieldItems } from "./createBoard.js";
 export { util }
 
 const util = {
@@ -23,5 +24,21 @@ const util = {
     capitalizeFirstLetter(string) {
         return string.charAt(0).toUpperCase() + string.slice(1);
       },
+    
+    copyArray(arr) {
+        const newArr = [];
+        for(const el of arr){
+            newArr.push(el);
+        }
+        return newArr;
+    },
 
+    endGameHandlerWrap(menuObj, gameObj, validData){
+        function executeGameEnd(){
+            removeEndFieldItems(); 
+            const menu = new menuObj(gameObj, validData);
+            menu.initMenu();
+        }
+        return executeGameEnd;
+    }
 }
