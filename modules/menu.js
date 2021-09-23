@@ -33,8 +33,8 @@ createMenuButtons() {
     menuQuizButton.addEventListener('click', ()=>{
        document.querySelector(".buttons").remove();
        document.querySelector(".wrapper").appendChild(createBoard());
+       document.querySelector('.headline').classList.remove('invisible')
        const newGame = new this.game(this.topics[this.currentTopic], this.difficultyLevel[this.currentDifficulty]);
-       // TODO: remove invisible class from headline
        newGame.init();
     })
 }
