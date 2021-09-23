@@ -214,3 +214,52 @@ p.answer {
     margin-top: 0;
     font-weight: bold;
 }
+
+.buttons,
+.diff-levels {
+    width: 550px;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--background-blue);
+    box-shadow: 0 0 1rem var(--light-blue-shadow);
+}
+
+.buttons div,
+.diff-levels > .menuBtn {
+    width: 300px;
+    height: 50px;
+    border-radius: 8px;
+    font-weight: 700;
+    box-shadow: 0 0 1rem var(--another-blue);
+}
+
+.buttons div + div {
+    margin-top: 1rem;
+}
+
+.menuBtn,
+.diff-level {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.menuBtn {
+    background-color: var(--color-coral);
+}
+
+div.diff-levels > div.menuBtn,
+.diff-level {
+    background-color: var(--card-color);
+}
+
+div.diff-levels > div.menuBtn + div.menuBtn {
+    margin-top: 1.5rem;
+}
+
+
