@@ -63,6 +63,7 @@ class Game {
 
 	endgame() {
 		const elementToRemove = document.querySelector('#playfield');
+		const gameEnd = util.endGameHandlerWrap(Menu, Game, validData);
 		elementToRemove.classList.add("close");
 		util.wait(800).then(()=> {
 			removeElement(elementToRemove);
@@ -70,14 +71,7 @@ class Game {
 			endScreen.querySelector('p:first-child').textContent = 'Your score is:';
 			endScreen.querySelector('p:last-child').textContent = this.score;
 			document.querySelector('.wrapper').appendChild(endScreen);
-			endScreen.addEventListener('click', ()=>{
-				document.querySelector('.headline').classList.add('invisible');
-				document.querySelector('.score-wrapper').remove();
-				document.querySelector('.timer-wrapper').remove();
-				endScreen.remove()
-				const menu = new Menu(Game, validData);
-				menu.initMenu();
-			})
+			endScreen.addEventListener('click', gameEnd);
 	})
 	}
 
